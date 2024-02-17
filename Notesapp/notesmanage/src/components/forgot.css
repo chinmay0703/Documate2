@@ -1,0 +1,22 @@
+.parent-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .custom-lock-icon {
+    font-size: 500px;
+    height: 70px;  
+    width: 500px;
+  }
+  body {
+    overflow-x: hidden;
+  }
+  
+  @media (max-width: 700px) {
+    body {
+      overflow-x: hidden;
+    }
+  }
+  
+  

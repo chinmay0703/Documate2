@@ -1,0 +1,22 @@
+.notepad-container {
+    width: 100%;
+    max-width:900 px; /* Adjust the width as needed */
+    margin: 0 auto;
+    height: 900px;
+  }
+  
+  .notepad-block {
+    border: 1px solid #ccc; /* Border color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Box shadow */
+    padding: 10px; /* Adjust padding as needed */
+    background-color: #fff; /* Background color */
+    border-radius: 5px; /* Border radius */
+    height: 400px;
+  }
+
+  @media (max-width: 768px) {
+    .notepad-block {
+      height: 500px; /* Adjust height for mobile view */
+    }
+  }
+  

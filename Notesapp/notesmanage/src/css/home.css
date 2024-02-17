@@ -1,0 +1,67 @@
+.back {
+    /* background-color: rgb(32, 165, 248); */
+    background-color: #016ECC;
+    background: linear-gradient(to right, rgb(32, 165, 248), rgba(64, 169, 234, 0.5));
+}
+.backk {
+    /* background-color: rgb(32, 165, 248); */
+    background-color: #016ECC;
+    background: linear-gradient(to right, rgb(32, 165, 248), rgba(64, 169, 234, 0.5));
+}
+.bac {
+    /* background-color: rgb(32, 165, 248); */
+    background-color: #9ca5ac;
+    background: linear-gradient(to right, rgb(189, 201, 208), rgba(213, 219, 223, 0.5));
+    height: 70%;
+    /* top: 50px; */
+}
+.ba {
+    background-color: #eef1f3;
+    background: linear-gradient(to right, rgb(205, 252, 252), rgba(255, 255, 255, 0.5));
+    height: 70%;
+}
+.signupback{
+    background-color: #016ECC;
+    background: linear-gradient(to right, rgb(32, 165, 248), rgba(64, 169, 234, 0.5));
+    
+}
+@media (max-width: 767px) {
+    .signupback {
+        height: auto; /* or set a different height for mobile view */
+    }
+}
+
+
+
+.sdd:hover {
+    border: 3px solid #3498db; /* Blue border color */
+}
+@media (max-width: 1024px) {
+    .elementor-heading-title {
+        font-size:48px;
+    }
+}
+
+.elementor-heading-title {
+    color: #FFFFFF;
+    font-size: 50px;
+    font-weight: bold;
+    line-height: 1.15em;
+}
+.title {
+    color: #FFFFFF;
+    /* font-size: 50px; */
+    font-weight: bold;
+    /* line-height: 1.15em; */
+}
+.titlee {
+    color: #FFFFFF;
+    font-size: px;
+    font-weight: bold;
+    /* line-height: 1.15em; */
+}
+
+.by{
+    padding: 18px 30px 18px 30px;
+    color: #FFFFFF;
+}

@@ -1,0 +1,32 @@
+
+import { addnotes } from '../controller/addnotesController.js';
+import { addnotename } from '../controller/checknotenameController.js';
+import { forgotpassotp } from '../controller/checkotpForgotpassController.js';
+import { deletee } from '../controller/deleteAlluserController.js';
+import { deleteall } from '../controller/deleteController.js';
+import { deletenote } from '../controller/deletenoteController.js';
+import { getallnotes } from '../controller/getallnotesCOntroller.js';
+import { login } from '../controller/signincontroller.js';
+import { signup } from '../controller/signupController.js';
+import { updatenote } from '../controller/updatenoteController.js';
+import { updatepass } from '../controller/updatepassController.js';
+import { validateemail } from '../controller/validateemailController.js';
+import { validatetoken } from '../controller/validatetokenController.js';
+import { verifyemail } from '../controller/verifyemailController.js';
+import express from 'express';
+const router = express.Router();
+router.post("/postdata",signup);
+router.post("/deletenote",deletenote);
+router.post("/getallnotes",getallnotes);
+router.post("/update",updatenote);
+router.post("/sendnote",addnotes);
+router.post("/deeleteall",deletee);
+router.post("/addnotename",addnotename)
+router.post("/auntheticatelogin",login);
+router.post("/deleteallusers",deleteall);
+router.post("/updatepass",updatepass);
+router.post("/checkotp",forgotpassotp);
+router.post("/validateemail",validateemail);
+router.post("/verifyemail",verifyemail);
+router.post("/validateToken",validatetoken);
+export default router;
