@@ -1,33 +1,27 @@
-import React, { useState } from 'react';
-import { BlockNoteEditor } from "@blocknote/core";
-import { BlockNoteView, useBlockNote } from "@blocknote/react";
-import "@blocknote/react/style.css";
+import { useEffect } from 'react';
+import { BlockNoteEditor, BlockNoteView, useBlockNote } from '@blocknote/react';
 
-function MyBlockNoteEditor() {
-    const [html, setHTML] = useState("");
-    const editor = useBlockNote({
-        onEditorContentChange: (editor) => {
-            const saveBlocksAsHTML = async () => {
-                const html = await editor.blocksToHTMLLossy(editor.topLevelBlocks);
-                setHTML(html);
-            };
-            saveBlocksAsHTML();
-        }
-    });
-    return (
-        <div>
-            <div className="blocknote-view" data-theme="light">
-                <div className="notepa-container">
-                    <div className="justify-content-start mx-3 my-3 notepad-bock">
-                        <div className="">
-                            <BlockNoteView editor={editor} theme={"light"} />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <pre>{html}</pre>
-        </div>
-    );
-}
+const YourComponent = () => {
+  const editor = useBlockNote({ editable: false });
 
-export default MyBlockNoteEditor;
+  useEffect(() => {
+    const notetext = "dsdkm dsnfj\n\n## asnjsa\n\n![Sample Image](https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png)\n";
+
+    const parseAndDisplay = async () => {
+      const parsedBlocks = await editor.tryParseMarkdownToBlocks(notetext);
+      editor.replaceBlocks(editor.topLevelBlocks, parsedBlocks);
+    };
+
+    parseAndDisplay();
+  }, [editor]);
+
+  return (
+    <div>
+      <div>
+        <BlockNoteView editor={editor} theme={'light'} />
+      </div>
+    </div>
+  );
+};
+
+export default YourComponent;

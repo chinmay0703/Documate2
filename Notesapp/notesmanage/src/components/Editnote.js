@@ -10,6 +10,7 @@ import { InputText } from 'primereact/inputtext';
 import { BlockNoteEditor } from "@blocknote/core";
 import { BlockNoteView, useBlockNote } from "@blocknote/react";
 import "@blocknote/react/style.css";
+import parse from 'html-react-parser';
 
 function Editnote() {
     const [visible, setVisible] = useState(false);
@@ -17,8 +18,9 @@ function Editnote() {
     const [notename, setNotename] = useState('');
     const [notes, setNotes] = useState([]);
     const [formdata, setFormadata] = useState({});
-    const [notetext, setNotetext] = useState(null);
+    const [notetext, setNotetext] = useState('');
     const [noteid, setNoteid] = useState('');
+    const [html, setHTML] = useState("");
     const navigate = useNavigate();
     const [tokenpresnet, setTokenpresent] = useState(false);
     const toast = useRef(null);
@@ -31,24 +33,25 @@ function Editnote() {
     const showError = (errorDetail) => {
         toast.current.show({ severity: 'error', summary: 'Try again', detail: errorDetail, life: 3000 });
     }
-    const notefind = () => {
+    const notefind = async () => {
         const selectedNote = notes.find((note) => note._id === noteid);
         if (selectedNote) {
-            const { title, paragraphs } = selectedNote;
-            setNotename(title);
-            
-            setNotetext(paragraphs);
-            console.log('Found note:', selectedNote);
-            console.log('notename:', title);
-            console.log('notetext:', paragraphs);
+            const { notename, notetext } = selectedNote;
+            setNotename(notename);
+            try {
+                const parsedata = JSON.parse(notetext);
+                console.log(parsedata);
+                const parsedBlocks = await editor.tryParseMarkdownToBlocks(parsedata);
+                setNotetext(parsedBlocks);
+                editor.replaceBlocks(editor.topLevelBlocks, parsedBlocks);
+            } catch (error) {
+                console.error('Error parsing note text:', error);
+            }
         } else {
             console.warn('Note not found for noteid:', noteid);
         }
     };
-
-
     const location = useLocation();
-
     useEffect(() => {
         if (location.state && location.state.id) {
             setNoteid(location.state.id);
@@ -100,27 +103,31 @@ function Editnote() {
     };
 
     const editor = useBlockNote({
-        onEditorContentChange: (editor) =>
-            setNotetext(editor.topLevelBlocks)
+        onEditorContentChange: (editor) => {
+            const saveBlocksAsMarkdown = async () => {
+                const markdown = await editor.blocksToMarkdownLossy(editor.topLevelBlocks);
+                setHTML(markdown);
+            };
+            saveBlocksAsMarkdown();
+        },
     });
 
     const handlesubmit = async (e) => {
         e.preventDefault();
-        const useremail = formdata.email;
+        console.log(html);
+        const emaill = formdata.email;
+        const ht = JSON.stringify(html);
         const formdataa = {
-            notetext,
-            email: useremail,
+            notetext: ht,
+            email: emaill,
             notename,
             noteid,
         };
         try {
-            console.log(notetext);
             const response = await axios.post('http://localhost:3001/update', formdataa);
             console.log(response.data);
-            showSuccess("Note Updated Successffully");
-            setTimeout(() => {
-                navigate("/dashboard");
-            }, 2000);
+            showSuccess("Note Created Successffully");
+            navigate("/dashboard")
         } catch (error) {
             if (error.response) {
                 showError(`${error.response.data.error}`);
@@ -222,17 +229,18 @@ function Editnote() {
                         <div className="notepad">
                             <ui>
                                 <Button className='mx-3' onClick={handlesubmit}>Update</Button>
-
                             </ui>
                             <div className="justify-content-start mx-3 my-3 note">
-                                
                                 <div className="">
                                     <BlockNoteView editor={editor} value={notetext} theme={"light"} />
                                 </div>
-
+                                <div>
                                 {/* <textarea
                                     value={notetext}
                                     onChange={(e) => setNotetext(e.target.value)} className='w-100 h-100'></textarea> */}
+                               
+
+                                </div>
                             </div>
 
 

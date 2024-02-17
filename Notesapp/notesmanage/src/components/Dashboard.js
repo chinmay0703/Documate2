@@ -46,7 +46,7 @@ function Dashboard() {
     toast.current.show({ severity: 'info', summary: 'Info', detail: errorDetail, life: 3000 });
   }
   const showError = (errorDetail) => {
-    toast.current.show({ severity: 'error', summary: 'Try again', detail: errorDetail, life: 3000 });
+    toast.current.show({ severity: 'error', summary: 'Deleted', detail: errorDetail, life: 3000 });
   }
   useEffect(() => {
     refreshuser();
@@ -147,26 +147,24 @@ function Dashboard() {
   const handleEdit = async (id) => {
     navigate('/editnote', { state: { id } });
   }
-  // function truncateText(text, wordCount) {
-  //   if (text.length > 50) {
+  function truncateText(text, wordCount) {
+    if (text.length > 50) {
 
-  //     var str = ''
-  //     for (let i = 0; i < 8; i++) {
-  //       str = str + text[i];
-  //     }
-  //     return str + '...';;
+      var str = ''
+      for (let i = 0; i < 8; i++) {
+        str = str + text[i];
+      }
+      return str + '...';;
 
-  //   }
-  //   const words = text.split(' ');
-
-
-  //   if (words.length > wordCount) {
-  //     const truncatedText = words.slice(0, wordCount).join(' ') + ' .....';
-  //     return truncatedText;
-  //   } else {
-  //     return text;
-  //   }
-  // }
+    }
+    const words = text.split(' ');
+    if (words.length > wordCount) {
+      const truncatedText = words.slice(0, wordCount).join(' ') + ' .....';
+      return truncatedText;
+    } else {
+      return text;
+    }
+  }
 
   const handleDelete = async () => {
     try {
@@ -286,28 +284,28 @@ function Dashboard() {
         </div>
       </div>
 
-     
-        <div className='container'>
-          <div className='row'>
-            {notes.map((note, index) => (
-              <div className='col-sm-12 col-md-6 col-lg-4 my-3' key={note._id}>
-                <div className='card sdd bg-light shadow p-3 mb-5 bg-white rounded'>
-                  <div className='card-header'>
-                    <h5 className='text-center'>{note.title}</h5>
-                  </div>
-                  <div className='card-body'>
-                    <p className='card-text'>{(note.paragraphs[0].content[0].text)}</p>
-                  </div>
-                  <div className='card-footer my-4'>
-                    <Button severity='info' onClick={() => handleEdit(note._id)} className='my-2'>Edit</Button>
-                    <Button onClick={() => togglee(note._id)} severity='danger' className='justify-content-end align-items-end mx-2 my-2'>Delete</Button>
-                  </div>
+
+      <div className='container'>
+        <div className='row'>
+          {notes.map((note, index) => (
+            <div className='col-sm-12 col-md-6 col-lg-4 my-3' key={note._id}>
+              <div className='card sdd bg-light shadow p-3 mb-5 bg-white rounded'>
+                <div className='card-header'>
+                  <h5 className='text-center'>{note.notename}</h5>
+                </div>
+                <div className='card-body'>
+                {/* <p className='card-text'>{truncateText(note.notetext,6)}</p> */}
+                </div>
+                <div className='card-footer my-4'>
+                  <Button severity='info' onClick={() => handleEdit(note._id)} className='my-2'>Edit</Button>
+                  <Button onClick={() => togglee(note._id)} severity='danger' className='justify-content-end align-items-end mx-2 my-2'>Delete</Button>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
-    
+      </div>
+
       {/* <Footer></Footer> */}
     </div >
   );

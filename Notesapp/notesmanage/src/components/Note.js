@@ -13,7 +13,7 @@ import "@blocknote/react/style.css";
 import SaveIcon from '@mui/icons-material/Save';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Tooltip } from 'reactstrap';
-
+import { uploadToTmpFilesDotOrg_DEV_ONLY } from "@blocknote/core";
 function Note() {
     const [visible, setVisible] = useState(false);
     const [position, setPosition] = useState('center');
@@ -22,7 +22,6 @@ function Note() {
     const location = useLocation();
     const [namenote, setNamenote] = useState(location.state.notename);
     const navigate = useNavigate();
-    // console.log(location);
     const [tokenpresnet, setTokenpresent] = useState(false);
     const toast = useRef(null);
     const [tooltipOpen, setTooltipOpen] = useState(false);
@@ -71,25 +70,34 @@ function Note() {
         navigate("/");
     };
 
+
+    const [html, setHTML] = useState("");
     const editor = useBlockNote({
-        onEditorContentChange: (editor) =>
-            setNotetext(editor.topLevelBlocks)
+        uploadFile: uploadToTmpFilesDotOrg_DEV_ONLY,
+        onEditorContentChange: (editor) => {
+            const saveBlocksAsMarkdown = async () => {
+                const markdown = await editor.blocksToMarkdownLossy(editor.topLevelBlocks);
+                setHTML(markdown);
+            };
+            saveBlocksAsMarkdown();
+        },
     });
 
     const handlesubmit = async (e) => {
         e.preventDefault();
-        console.log(notetext);
+        console.log(html);
+        const ht = JSON.stringify(html);
         const useremail = formdata.email;
         const formdataa = {
-            notetext,
+            notetext: ht,
             email: useremail,
-            namenote,
+            notename: namenote,
         };
         try {
             const response = await axios.post('http://localhost:3001/sendnote', formdataa);
             console.log(response.data);
             showSuccess("Note Created Successffully");
-            navigate("/dashboard")
+            // navigate("/dashboard")
         } catch (error) {
             if (error.response) {
                 showError(`${error.response.data.error}`);
