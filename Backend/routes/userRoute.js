@@ -1,4 +1,3 @@
-
 import { addnotes } from '../controller/addnotesController.js';
 import { addnotename } from '../controller/checknotenameController.js';
 import { forgotpassotp } from '../controller/checkotpForgotpassController.js';
@@ -6,7 +5,6 @@ import { deletee } from '../controller/deleteAlluserController.js';
 import { deleteall } from '../controller/deleteController.js';
 import { deletenote } from '../controller/deletenoteController.js';
 import { getallnotes } from '../controller/getallnotesCOntroller.js';
-import { hello } from '../controller/helloController.js';
 import { login } from '../controller/signincontroller.js';
 import { signup } from '../controller/signupController.js';
 import { updatenote } from '../controller/updatenoteController.js';
@@ -17,7 +15,6 @@ import { verifyemail } from '../controller/verifyemailController.js';
 import express from 'express';
 const router = express.Router();
 router.post("/postdata",signup);
-router.get("/",hello);
 router.post("/deletenote",deletenote);
 router.post("/getallnotes",getallnotes);
 router.post("/update",updatenote);

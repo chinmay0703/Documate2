@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import router from './routes/userRoute.js';
+import path from 'path';
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3001;
@@ -17,12 +18,10 @@ mongoose.connect(mongodbURL, { useNewUrlParser: true, useUnifiedTopology: true }
   .catch((err) => {
     console.error('Error connecting to MongoDB:', err);
   });
-app.use(cors(
-  {
-    origin: ["https://documate2.vercel.app"], methods: ["POST", "GET"],
-    credentials: true
-  }
-))
+app.get("/", (req, res) => {
+  app.use(express.static(path.resolve(__dirname, "notesapp", "build")));
+  res.sendFile(path.resolve(__dirname, "notesapp", "build", "index.html"));
+});
 app.use(cors());
 app.use(bodyParser.json());
 app.use(router);
