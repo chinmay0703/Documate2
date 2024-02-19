@@ -17,7 +17,12 @@ mongoose.connect(mongodbURL, { useNewUrlParser: true, useUnifiedTopology: true }
   .catch((err) => {
     console.error('Error connecting to MongoDB:', err);
   });
-
+app.use(cors(
+  {
+    origin: ["https://documate2.vercel.app"], methods: ["POST", "GET"],
+    credentials: true
+  }
+))
 app.use(cors());
 app.use(bodyParser.json());
 app.use(router);
