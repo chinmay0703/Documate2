@@ -11,13 +11,16 @@ const mongodbURL = process.env.MONGODB_URL;
 mongoose.connect(mongodbURL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log('Connected to MongoDB');
+    console.log("helllo");
+    console.log("snhfu");
   })
   .catch((err) => {
     console.error('Error connecting to MongoDB:', err);
   });
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(router);
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
