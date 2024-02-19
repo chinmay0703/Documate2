@@ -17,7 +17,7 @@ import { verifyemail } from '../controller/verifyemailController.js';
 import express from 'express';
 const router = express.Router();
 router.post("/postdata",signup);
-router.post("/",hello);
+router.get("/",hello);
 router.post("/deletenote",deletenote);
 router.post("/getallnotes",getallnotes);
 router.post("/update",updatenote);
