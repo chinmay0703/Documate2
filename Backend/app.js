@@ -19,8 +19,9 @@ mongoose.connect(mongodbURL, { useNewUrlParser: true, useUnifiedTopology: true }
     console.error('Error connecting to MongoDB:', err);
   });
 app.get("/", (req, res) => {
-  app.use(express.static(path.resolve(__dirname, "notesapp", "build")));
-  res.sendFile(path.resolve(__dirname, "notesapp", "build", "index.html"));
+  // app.use(express.static(path.resolve(__dirname, "notesapp", "build")));
+  // res.sendFile(path.resolve(__dirname, "notesapp", "build", "index.html"));
+  res.json({message:"hello"});
 });
 app.use(cors());
 app.use(bodyParser.json());
