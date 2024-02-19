@@ -9,7 +9,6 @@ export const updatenote = async (req, res) => {
             { $set: { 'notes.$.notetext': notetext, 'notes.$.notename': notename } },
             { new: true }
         );
-
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }

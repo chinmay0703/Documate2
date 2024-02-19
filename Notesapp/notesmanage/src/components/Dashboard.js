@@ -283,8 +283,6 @@ function Dashboard() {
           </Dialog>
         </div>
       </div>
-
-
       <div className='container'>
         <div className='row'>
           {notes.map((note, index) => (
