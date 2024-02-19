@@ -6,7 +6,7 @@ import { deleteall } from '../controller/deleteController.js';
 import { deletenote } from '../controller/deletenoteController.js';
 import { getallnotes } from '../controller/getallnotesCOntroller.js';
 import { hello } from '../controller/helloController.js';
-import { login } from '../controller/signincontroller.js';
+import { login } from '../controller/signinController.js';
 import { signup } from '../controller/signupController.js';
 import { updatenote } from '../controller/updatenoteController.js';
 import { updatepass } from '../controller/updatepassController.js';
