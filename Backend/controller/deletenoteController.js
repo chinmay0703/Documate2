@@ -1,10 +1,8 @@
 import User from "../model/userModel.js";
-
 export const deletenote = async (req, res) => {
     try {
         const { noteid, userid } = req.body;
         const user = await User.findOne({ _id: userid });
-
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
@@ -14,7 +12,6 @@ export const deletenote = async (req, res) => {
         }
         user.notes.splice(noteIndex, 1);
         await user.save();
-
         res.status(200).json({ message: 'Note deleted successfully' });
 
     } catch (error) {

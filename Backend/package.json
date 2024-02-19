@@ -1,4 +1,8 @@
 {
+  "name": "documate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
   "type": "module",
   "dependencies": {
     "bcrypt": "^5.1.1",

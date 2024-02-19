@@ -110,6 +110,7 @@ function Dashboard() {
       setTimeout(function () {
         navigate('/addnote', { state: { notename } });
       }, 1000);
+
     } catch (error) {
       if (error.response) {
         const errorMessage = error.response.data.error ? error.response.data.error.message : 'Note allready created with this name';
@@ -121,7 +122,6 @@ function Dashboard() {
       }
     }
   };
-
 
   const show = (position) => {
     const token = localStorage.getItem('Token');
@@ -142,6 +142,7 @@ function Dashboard() {
   useEffect(() => {
     console.log(JSON.stringify(notetext, null, 2));
   }, [notetext]);
+
 
 
   const handleEdit = async (id) => {
@@ -292,7 +293,7 @@ function Dashboard() {
                   <h5 className='text-center'>{note.notename}</h5>
                 </div>
                 <div className='card-body'>
-                {/* <p className='card-text'>{truncateText(note.notetext,6)}</p> */}
+                  {/* <p className='card-text'>{truncateText(note.notetext,6)}</p> */}
                 </div>
                 <div className='card-footer my-4'>
                   <Button severity='info' onClick={() => handleEdit(note._id)} className='my-2'>Edit</Button>
