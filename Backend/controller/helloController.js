@@ -1,3 +1,4 @@
 export const hello = (async (req, res) => {
-    res.status("Hello");
+    console.log("vwdgh");
+    res.send("Hello hrjfhrj");
 })
