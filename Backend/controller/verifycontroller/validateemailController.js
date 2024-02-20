@@ -1,10 +1,14 @@
+import defaultMailOptions from "../../Utils/mailoptions.js";
+import User from "../../model/userModel.js";
+import transporter from "../../Utils/transporter.js"; 
+import randomnumberonly from "../../functions/randomnumberforotp.js";
 
-import defaultMailOptions from "../Utils/mailoptions.js";
-import User from "../model/userModel.js";
-import transporter from "../Utils/transporter.js"; 
-import randomnumberonly from "../functions/randomnumberforotp.js";
+// email verification is done here once the email is verified once it is verirfied otp is generated and verify field is also updated with same otp
+ 
 export const validateemail = async (req, res) => {
+
     const { email } = req.body;
+
     try {
         const user = await User.findOne({ email });
 

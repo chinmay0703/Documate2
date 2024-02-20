@@ -1,5 +1,9 @@
-import User from "../model/userModel.js";
+import User from "../../model/userModel.js";
+
+// This is the function to delte the note os user 
+
 export const deletenote = async (req, res) => {
+
     try {
         const { noteid, userid } = req.body;
         const user = await User.findOne({ _id: userid });

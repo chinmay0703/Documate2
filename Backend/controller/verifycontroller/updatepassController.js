@@ -1,6 +1,9 @@
-import { hashPassword } from "../functions/hashpass.js";
-import User from "../model/userModel.js";
+import { hashPassword } from "../../functions/hashpass.js";
+import User from "../../model/userModel.js";
+
+// after checking teh otp pass is updated in this function 
 export const updatepass=(async (req, res) => {
+
     const { password, email } = req.body;
     try {
         const hashedPassword = await hashPassword(password);

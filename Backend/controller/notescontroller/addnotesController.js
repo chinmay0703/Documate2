@@ -1,7 +1,10 @@
-import User from "../model/userModel.js";
-import Notehistory from "../model/notesModel.js";
+import User from "../../model/userModel.js";
+import Notehistory from "../../model/notesModel.js";
+
+// function for adding the notes in notehistory schema and push the note to the user 
 
 export const addnotes = async (req, res) => {
+
     try {
         const { notetext, email, notename } = req.body;
         console.log(notetext);

@@ -1,6 +1,11 @@
-import User from "../model/userModel.js";
+import User from "../../model/userModel.js";
+
+// This is the function to update the existing note 
+// note will be find by noteid(unique)
+// user will be find by the users email(unique)
 
 export const updatenote = async (req, res) => {
+
     try {
         const { notetext, email, notename, noteid } = req.body;
         console.log(noteid);

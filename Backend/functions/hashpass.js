@@ -1,5 +1,7 @@
 import bcrypt from 'bcrypt';
+
 const workFactor = 10;
+
 export const hashPassword = async (password) => {
     console.log(password);
     try {

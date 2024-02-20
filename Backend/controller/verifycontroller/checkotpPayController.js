@@ -1,8 +1,10 @@
-import defaultMailOptions from "../Utils/mailoptions.js";
-// import TransactionHistory from "../model/transactionModel.js";
-import User from "../model/userModel.js";
-import transporter from "../Utils/transporter.js"; // Import transporter
+import defaultMailOptions from "../../utils/mailoptions.js";
+import User from "../../model/userModel.js";
+import transporter from "../../utils/transporter.js";
+
+// Otp is checked before the payment done 
 export const checkotppay = async (req, res) => {
+    
     const { email, recieve, amount, otp } = req.body;
     const numericAmount = parseFloat(amount);
 

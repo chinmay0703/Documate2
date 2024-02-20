@@ -1,6 +1,10 @@
-import User from "../model/userModel.js";
+import User from "../../model/userModel.js";
+
+// This is the function for creating the note 
+// Note name should be unique so before adding the note is is compared with all the notes of the user
 
 export const addnotename = async (req, res) => {
+
     const { notename, email } = req.body;
     try {
         const user = await User.findOne({ email });

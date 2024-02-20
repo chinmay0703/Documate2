@@ -1,8 +1,15 @@
-import transporter from "../Utils/transporter.js";
-import { hashPassword } from "../functions/hashpass.js";
-import User from "../model/userModel.js";
-import defaultMailOptions from "../Utils/mailoptions.js";
+import transporter from "../../Utils/transporter.js";
+import { hashPassword } from "../../functions/hashpass.js";
+import User from "../../model/userModel.js";
+import defaultMailOptions from "../../Utils/mailoptions.js";
+
+
+// This is the signup function where first check if email is present earlier and if present send status code 404 and if not present create the user 
+//  Password :encryption using bcrypt(Library)
+//  Accound no:use random number function for creation of account no
+//  Mail : send the email after successfully singup and use nodemailer (Library) for that
 export const signup =( async (req, res) => {
+
     try {
         const { name,email,password} = req.body;
         console.log(email);

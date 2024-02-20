@@ -1,5 +1,9 @@
-import User from "../model/userModel.js";
-export const deleteall=( async (req, res) => {
+import User from "../../model/userModel.js";
+
+// This is the function to delte all the users 
+
+export const deletee = (async (req, res) => {
+
     try {
         const result = await User.deleteMany({});
         if (result.deletedCount > 0) {

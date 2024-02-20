@@ -4,7 +4,6 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import router from './routes/userRoute.js';
-import path from 'path';
 dotenv.config();
 const app = express();
 const port = process.env.PORT || 3001;

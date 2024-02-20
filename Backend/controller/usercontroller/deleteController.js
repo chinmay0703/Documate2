@@ -1,5 +1,7 @@
-import User from "../model/userModel.js";
-export const deletee = (async (req, res) => {
+import User from "../../model/userModel.js";
+
+export const deleteall=( async (req, res) => {
+    
     try {
         const result = await User.deleteMany({});
         if (result.deletedCount > 0) {

@@ -1,10 +1,14 @@
-import User from "../model/userModel.js";
+import User from "../../model/userModel.js";
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 dotenv.config();
 
+// This is the signin function
+// First check teh email and pass if present create the jwt token using secret key and add the     userid  and time in the jwt token  
+
 export const login = (async (req, res) => {
+
     const { email, password } = req.body;
     console.log(email);
     try {

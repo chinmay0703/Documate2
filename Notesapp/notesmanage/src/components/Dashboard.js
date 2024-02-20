@@ -11,7 +11,7 @@ import { BlockNoteEditor } from "@blocknote/core";
 import { BlockNoteView, useBlockNote } from "@blocknote/react";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import "@blocknote/react/style.css";
-
+import config from '../url/config';
 function Dashboard() {
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState('');
@@ -57,7 +57,7 @@ function Dashboard() {
       setTokenpresent(true);
     }
     axios
-      .post('http://localhost:3001/validateToken', { token })
+      .post(`${config.apiUrl}/validateToken`, { token })
       .then((response) => {
         setNotes(response.data.user.notes);
         // setNoteslength(response.data.user.notes.length);
@@ -104,7 +104,7 @@ function Dashboard() {
     };
     try {
       console.log(notetext);
-      const response = await axios.post('http://localhost:3001/addnotename', formdataa);
+       const response = await axios.post(`${config.apiUrl}/addnotename`, formdataa);
       console.log(response.data);
       showSuccess(`New note creating by name ${notename}`);
       setTimeout(function () {
@@ -143,8 +143,6 @@ function Dashboard() {
     console.log(JSON.stringify(notetext, null, 2));
   }, [notetext]);
 
-
-
   const handleEdit = async (id) => {
     navigate('/editnote', { state: { id } });
   }
@@ -174,7 +172,7 @@ function Dashboard() {
         userid: formdata._id,
       };
       console.log(formdataa);
-      const response = await axios.post("http://localhost:3001/deletenote", formdataa);
+      const response = await axios.post(`${config.apiUrl}/deletenote`, formdataa);
       console.log(response.data);
       showError("Note Deleted");
       refreshuser();

@@ -1,8 +1,11 @@
-import User from "../model/userModel.js";
+import User from "../../model/userModel.js";
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 dotenv.config();
+
+// Token is checked here and if token is valid userid is extract from the token using verify method of jwt 
 export const validatetoken = (async (req, res) => {
+
     try {
         const { token } = req.body;
         const jwtSecretKey = process.env.JWT_SECRET_KEY;

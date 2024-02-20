@@ -1,6 +1,10 @@
-import User from "../model/userModel.js";
+import User from "../../model/userModel.js";
+
+//  When the user's mail is verified 4 random number created by the random number function is send to the user's mail 
+//  user have verify field which is also have teh same 4 numbers updated during creatin of otp
 
 export const forgotpassotp=(async (req, res) => {
+
     const { otp, email } = req.body;
     try {
         const user = await User.findOne({ email });
